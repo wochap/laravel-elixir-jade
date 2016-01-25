@@ -25,6 +25,7 @@ Elixir.extend('jade', function (src, output, options) {
   options = _.extend({
     basedir: 'resources/views', // required to use absolute paths
     extension: '.html',
+    showFilename: true,
     pretty: true
   }, options)
 
@@ -42,6 +43,11 @@ Elixir.extend('jade', function (src, output, options) {
 
   var gulp_src = options.basedir + '/' + src
   var gulp_dest = output || 'public/views'
+  var message = 'Jade Compiled!'
+
+  if (options.showFilename) {
+    message = '<%= file.relative %> Compiled!'
+  }
 
   new Elixir.Task('jade', function () {
     this.log(gulp_src, gulp_dest) // Log src and output
@@ -59,7 +65,7 @@ Elixir.extend('jade', function (src, output, options) {
         path.extname = options.extension
       }))
       .pipe(gulp.dest(gulp_dest))
-      .pipe(new Elixir.Notification('Jade Compiled!'))
+      .pipe(new Elixir.Notification(message))
   })
   .watch(options.basedir + '/**/*.jade')
 })

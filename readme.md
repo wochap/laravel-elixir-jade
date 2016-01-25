@@ -2,7 +2,7 @@
 
 This Laravel Elixir extension allows you to compile [jade](https://github.com/pugjs/jade).
 
-### Goals
+### Features
 
 * This task will compile your Jade files that have changed*.
 * This also prevent partials from being processed separately by marking them with an underscore before their name.
@@ -61,6 +61,14 @@ These are the default options:
 {
     basedir: 'resources/views', // required to use absolute paths and default jade source folder
     extension: '.html',
+    showFilename: true, // display current filename in notifications
     pretty: true
 }
 ```
+
+## Changelog
+
+### 0.1.0
+
+  * Add option to display the compiled filename
+  * Update gulp-jade version
